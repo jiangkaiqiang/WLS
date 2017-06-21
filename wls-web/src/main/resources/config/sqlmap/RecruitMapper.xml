@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wls.manage.dao.RecruitMapper" >
+  <resultMap id="BaseResultMap" type="com.wls.manage.entity.Recruit" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="industry" property="industry" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="internship_days" property="internship_days" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="publishTime" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="internship_length" property="internship_length" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="recruit_num" property="recruit_num" jdbcType="VARCHAR" />
+    <result column="advantage" property="advantage" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, title, cover, company, industry, category, province, internship_days, salary, 
+    publishTime, content, position, address, endTime, education, internship_length, source, 
+    recruit_num, advantage, url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wls.manage.entity.Recruit" >
+    insert into recruit (title, cover, 
+      company, industry, category, 
+      province, internship_days, salary, 
+      publishTime, content, position, 
+      address, endTime, education, 
+      internship_length, source, recruit_num, 
+      advantage, url)
+    values (#{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{internship_days,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, #{education,jdbcType=VARCHAR}, 
+      #{internship_length,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{recruit_num,jdbcType=VARCHAR}, 
+      #{advantage,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wls.manage.entity.Recruit" >
+    insert into recruit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="industry != null" >
+        industry,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="internship_days != null" >
+        internship_days,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="publishTime != null" >
+        publishTime,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="endTime != null" >
+        endTime,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="internship_length != null" >
+        internship_length,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="recruit_num != null" >
+        recruit_num,
+      </if>
+      <if test="advantage != null" >
+        advantage,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="internship_days != null" >
+        #{internship_days,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="internship_length != null" >
+        #{internship_length,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="recruit_num != null" >
+        #{recruit_num,jdbcType=VARCHAR},
+      </if>
+      <if test="advantage != null" >
+        #{advantage,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wls.manage.entity.Recruit" >
+    update recruit
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="internship_days != null" >
+        internship_days = #{internship_days,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publishTime = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        endTime = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="internship_length != null" >
+        internship_length = #{internship_length,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="recruit_num != null" >
+        recruit_num = #{recruit_num,jdbcType=VARCHAR},
+      </if>
+      <if test="advantage != null" >
+        advantage = #{advantage,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wls.manage.entity.Recruit" >
+    update recruit
+    set title = #{title,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      internship_days = #{internship_days,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      publishTime = #{publishTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      endTime = #{endTime,jdbcType=TIMESTAMP},
+      education = #{education,jdbcType=VARCHAR},
+      internship_length = #{internship_length,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      recruit_num = #{recruit_num,jdbcType=VARCHAR},
+      advantage = #{advantage,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAllRecruit" parameterType="map" resultType="com.wls.manage.entity.Recruit">
+         SELECT * FROM `recruit`
+		 <where>
+		    <if test="audit != null">
+			    category=#{audit}
+			</if>
+		    <if test="keyword != null">
+		        AND title like "%"#{keyword}"%"
+		    </if>
+		    AND cover is not null AND cover != ''
+		 </where>
+         order by `publishTime` desc
+    </select>
+</mapper>
