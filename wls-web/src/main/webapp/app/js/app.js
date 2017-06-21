@@ -61,6 +61,9 @@ wlsWeb.factory('userService',['$rootScope','$http', function($rootScope,$http){
 	        $rootScope.goRegister = function() {
 	        	window.location.href = "#/register";
 	        };
+	        $rootScope.goRecruit = function() {
+	        	window.location.href = "#/recruits";
+	        };
 	    },
 	};
 }]);
@@ -129,5 +132,13 @@ wlsWeb.config(function ($stateProvider, $urlRouterProvider) {
         url: '/my-space-company-ask/:spaceID',
         controller: 'my-space-company-ask',
         templateUrl: 'app/template/my-space-company-ask.html'
+    }).state('recruits', {
+        url: '/recruits',
+        controller: 'recruits',
+        templateUrl: 'app/template/recruits.html'
+    }).state('recruit-info', {
+        url: '/recruit-info/:recruitID',
+        controller: 'recruit-info',
+        templateUrl: 'app/template/recruit-info.html'
     });
 });
