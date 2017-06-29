@@ -1,0 +1,45 @@
+<head>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f3c4a089acab1654d89e00bac21834af";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+ <!--DOC: menu-always-on-top class to the body element to set menu on top --> 
+ <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap-fileinput.css" /> 
+ <script src="../../assets/js/bootstrap.min.js" type="text/javascript"></script> 
+ <script src="../../assets/js/bootstrap-fileinput.js" type="text/javascript"></script>
+ <body class="menu-always-on-top"> 
+  <div class="weilanshu" id="base_content_container"> 
+   <div class="main"> 
+    <div class="container"> 
+     <ul class="breadcrumb" style="background-color:#f1f2f3"> 
+      <li><a href="">首页</a></li> 
+      <li><a href="#/news">在线直聘</a></li> 
+      <li class="active">招聘详情</li> 
+     </ul> 
+     <!-- BEGIN SIDEBAR & CONTENT --> 
+     <div class="row margin-bottom-40"> 
+      <!-- BEGIN CONTENT --> 
+      <div class="col-md-9 col-sm-7"> 
+       <div class="news-info-body"> 
+        <h3 class="padding-top-20 margin-bottom-20">{{information.title}}</h3> 
+        <p><i class="fa fa-user"></i> {{information.source}} &nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-calendar"></i> {{information.publishTime}}&nbsp;&nbsp;&nbsp;&nbsp;
+         <i class="fa fa-tags"></i>{{information.salary}} </p> 
+         <div id="inforContent"></div>
+          <a class="btn blue" href="{{information.url}}">立即申请</a> 
+       </div> 
+       <!-- END PRODUCT LIST --> 
+      </div> 
+     </div> 
+     <!-- END SIDEBAR & CONTENT --> 
+    </div> 
+   </div> 
+  </div> 
+  <!-- Global js END -->  
+ </body>
