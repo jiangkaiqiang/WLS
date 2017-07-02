@@ -19,12 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wls.manage.crawler.jianzhimao.ListCrawler_jianzhimao;
+import com.wls.manage.crawler.shixiseng.ListCrawler_shixiseng;
+import com.wls.manage.crawler.wutongguo.ListCrawler_wutongguo;
 import com.wls.manage.dao.RecruitMapper;
 import com.wls.manage.dto.BaseDto;
 import com.wls.manage.dto.CommentDto;
 import com.wls.manage.dto.ResponseDto;
 import com.wls.manage.dto.UploadFileEntity;
 import com.wls.manage.entity.CommentEntity;
+import com.wls.manage.entity.PublishEntity;
 import com.wls.manage.entity.Recruit;
 import com.wls.manage.entity.ResponseEntity;
 import com.wls.manage.service.FtpService;
@@ -87,41 +91,54 @@ public class RecruitController extends BaseController {
 		return recruit;
 	}
 	
-
-	/**
-	 * 将数据插入数据库，需要传入NewInfomationDto和自己设置的分类：1：科技类，2：文娱类，3：创业类，4：时事类，5：校园类
-	 * @param newInfomationDtos
-	 * @param category
-	 */
-	/*public void insertInformationByType(List<NewInfomationDto> newInfomationDtos,String category) {
-		for (NewInfomationDto newInfomationDto : newInfomationDtos) {
-			 InformationEntity informationEntity = new InformationEntity();
-			    informationEntity.setContent(newInfomationDto.getContent());
-			    informationEntity.setCoverpiclist(newInfomationDto.getPic());
-			    informationEntity.setInfocategory(category);
-			    informationEntity.setSource(newInfomationDto.getSource());
-			    informationEntity.setTitle(newInfomationDto.getTitle());
-			    informationEntity.setTime(newInfomationDto.getTime());
-			    //数据库去重
-			    if (informationDao.findInformationByTitle(informationEntity.getTitle())==null) {
-			    	 informationDao.insertInformation(informationEntity);
-				}
-		}
-	}*/
 	
 	/**
 	 * 实习僧
 	 * @return
 	 * @throws Exception
 	 */
-	/*@RequestMapping(value = "/addRecruitWithSXS")
+	@RequestMapping(value = "/addRecruitWithSXS")
 	@ResponseBody
-	public Object addInformationWithBJ() throws Exception {
-		ListCrawler_shengxiseng listCrawler = new ListCrawler_shengxiseng();
-		List<NewInfomationDto> newInfomationDtos = listCrawler.parse();
-		insertInformationByType(newInfomationDtos,"1");
+	public Object addRecruitWithSXS() throws Exception {
+		ListCrawler_shixiseng listCrawler = new ListCrawler_shixiseng();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
 		return ResponseData.newSuccess("添加成功");
-	}*/
+	}
+	
+	/**
+	 * 梧桐果
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithWTG")
+	@ResponseBody
+	public Object addRecruitWithWTG() throws Exception {
+		ListCrawler_wutongguo listCrawler = new ListCrawler_wutongguo();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
+	
+	/**
+	 * 兼职猫
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithJZM")
+	@ResponseBody
+	public Object addRecruitWithJZM() throws Exception {
+		ListCrawler_jianzhimao listCrawler = new ListCrawler_jianzhimao();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
 	
 	/**
 	 * 后端管理系统================================================================
@@ -140,5 +157,98 @@ public class RecruitController extends BaseController {
 			recruitDao.deleteByPrimaryKey(recruitID);
 		}
 		return new BaseDto(0);
+	}
+	
+	
+	/**
+	 * 增加发布
+	 * @param message
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruit")
+	@ResponseBody
+	public Object addRecruit(@RequestParam(required = false) String title,//标题
+			@RequestParam(required = false) String salary,
+			@RequestParam(required = false) String position,
+			@RequestParam(required = false) String education,
+			@RequestParam(required = false) String pubcategory,
+			@RequestParam(required = false) String publisher,
+			@RequestParam(required = false) Integer schoolid,
+			@RequestParam(required = false) String content, 
+			@RequestParam(required = false) MultipartFile picFile0,
+			@RequestParam(required = false) MultipartFile picFile1,
+			@RequestParam(required = false) MultipartFile picFile2,
+			@RequestParam(required = false) MultipartFile picFile3,
+			@RequestParam(required = false) MultipartFile picFile4,
+			@RequestParam(required = false) MultipartFile picFile5
+			){
+		if(schoolid==null){
+			schoolid = -1;
+		}
+		MultipartFile[] picFiles = {picFile5, picFile4, picFile3, picFile2, picFile1,picFile0};
+		/*MultipartFile[] appendixs = {appendix2, appendix1, appendix0};
+		MultipartFile[] videoFiles = {videoFile0, videoFile1};*/
+		
+		//PageParseUtil pageParseUtil = new PageParseUtil();
+		//List<String> publishCovers = pageParseUtil.parse(content);
+		Recruit recruit = new Recruit();
+		recruit.setCompany(publisher);
+		recruit.setTitle(title);
+		recruit.setSalary(salary);
+		recruit.setPosition(position);
+		recruit.setEducation(education);
+		recruit.setCategory(pubcategory);
+		recruit.setContent(content);
+		String picFile = "";
+		/*String appendixString = "";
+		String videoFile = "";*/
+		for (MultipartFile file : picFiles) {
+			if (file == null) {
+				continue;
+			}
+			String dir = String.format("%s/recruit/picFile", baseDir);
+			String fileName = String.format("pic_%s.%s", new Date().getTime(), "jpg");
+			UploadFileEntity uploadFileEntity = new UploadFileEntity(fileName, file, dir);
+			ftpService.uploadFile(uploadFileEntity);
+			picFile = picFile + FtpService.READ_URL+"data/"+dir + "/" + fileName;
+		}
+		/*for (MultipartFile file : videoFiles) {
+			if (file == null) {
+				continue;
+			}
+			String prefix=file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")+1);
+			String dir = String.format("%s/publish/videoFile", baseDir);
+			String fileName = String.format("video_%s.%s", new Date().getTime(), prefix);
+			UploadFileEntity uploadFileEntity = new UploadFileEntity(fileName, file, dir);
+			ftpService.uploadFile(uploadFileEntity);
+			videoFile = videoFile + FtpService.READ_URL+"data/"+dir + "/" + fileName+";";
+		}
+		for (MultipartFile file : appendixs) {
+			if (file == null) {
+				continue;
+			}
+			String prefix=file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")+1);
+			String dir = String.format("%s/publish/appendixs", baseDir);
+			String fileName = String.format("apd_%s.%s", new Date().getTime(), prefix);
+			UploadFileEntity uploadFileEntity = new UploadFileEntity(fileName, file, dir);
+			ftpService.uploadFile(uploadFileEntity);
+			appendixString = appendixString +file.getOriginalFilename()+"<"+FtpService.READ_URL+"data/"+dir + "/" + fileName+">";
+		}*/
+		if (!picFile.equals("")) {
+			recruit.setCover(picFile);
+		}
+		/*if (!appendixString.equals("")) {
+			publishEntity.setAppendixs(appendixString);	
+		}
+		if (!videoFile.equals("")) {
+			publishEntity.setPubvideo(videoFile);
+		}*/
+	
+		/*if (publishCovers!=null&&!publishCovers.isEmpty()) {
+			publishEntity.setPubcover(publishCovers.get(0));
+		}*/
+		recruitDao.insert(recruit);
+		return ResponseData.newSuccess();
 	}
 }

@@ -108,6 +108,10 @@ wlsWeb.config(function ($stateProvider, $urlRouterProvider) {
         url: '/post-message',
         controller: 'post-message',
         templateUrl: 'app/template/post-message.html'
+    }).state('post-recruit', {
+        url: '/post-recruit',
+        controller: 'post-recruit',
+        templateUrl: 'app/template/post-recruit.html'
     }).state('news-info', {
         url: '/news-info/:newID',
         controller: 'news-info',

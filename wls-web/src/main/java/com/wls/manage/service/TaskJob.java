@@ -5,7 +5,8 @@ import com.wls.manage.service.base.HttpService;
 import com.wls.manage.service.base.impl.HttpServiceImpl;  
 @Component("taskJob")  
 public class TaskJob {  
-	String url = "http://www.weilanshu.com";
+	//String url = "http://www.weilanshu.com";
+	String url = "http://localhost:8989";
     @Scheduled(cron = "0 30 4 * * ?")  
     public void job1() {  
         HttpService httpService = new HttpServiceImpl();
@@ -40,6 +41,21 @@ public class TaskJob {
     public void job7() {  
         HttpService httpService = new HttpServiceImpl();
         httpService.sendGet(url+"/i/information/addInformationWithLY",20000);
+    } 
+    @Scheduled(cron = "0 51 4 * * ?")  
+    public void job8() {  
+        HttpService httpService = new HttpServiceImpl();
+        httpService.sendGet(url+"/i/recruit/addRecruitWithJZM",20000);
+    } 
+    @Scheduled(cron = "0 54 4 * * ?")  
+    public void job9() {  
+        HttpService httpService = new HttpServiceImpl();
+        httpService.sendGet(url+"/i/recruit/addRecruitWithWTG",20000);
+    } 
+    @Scheduled(cron = "0 57 4 * * ?")  
+    public void job10() {  
+        HttpService httpService = new HttpServiceImpl();
+        httpService.sendGet(url+"/i/recruit/addRecruitWithSXS",20000);
     } 
    /* @Scheduled(cron = "0 51 4 * * ?")  
     public void job8() {  

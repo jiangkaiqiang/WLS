@@ -1,4 +1,4 @@
-wlsWeb.controller('recruits',function($http, $location, $state,$scope,$interval) {
+wlsWeb.controller('recruits',function($http, $location,$rootScope, $state,$scope,$interval) {
 	$scope.defaultCoverPic = "../../assets/img/portfolio/1.jpg";
 	// 显示最大页数
     $scope.maxSize = 10;
@@ -8,6 +8,15 @@ wlsWeb.controller('recruits',function($http, $location, $state,$scope,$interval)
     $scope.bigCurrentPage = 1;
 	$scope.AllNews = [];
 	$scope.optAudit = 8;
+	 $scope.goPostMessage = function() {
+	    	if($rootScope.user!=null&&$rootScope.user.id!=undefined){
+	    		window.location.href="#/post-recruit";
+	    	}
+	    	else{
+	    		alert("请先登录");
+	    		window.location.href="#/login";
+	    	}  
+		};
 	$scope.AllCategory = [
 	                      {id:"8",name:"全部"},
 	                      {id:"1",name:"实习"},
