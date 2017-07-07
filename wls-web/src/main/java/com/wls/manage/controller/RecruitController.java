@@ -19,7 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wls.manage.crawler.dajie.ListCrawler_dajie;
 import com.wls.manage.crawler.jianzhimao.ListCrawler_jianzhimao;
+import com.wls.manage.crawler.shixi.ListCrawler_shixi;
 import com.wls.manage.crawler.shixiseng.ListCrawler_shixiseng;
 import com.wls.manage.crawler.wutongguo.ListCrawler_wutongguo;
 import com.wls.manage.dao.RecruitMapper;
@@ -97,7 +99,7 @@ public class RecruitController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/addRecruitWithSXS")
+	/*@RequestMapping(value = "/addRecruitWithSXS")
 	@ResponseBody
 	public Object addRecruitWithSXS() throws Exception {
 		ListCrawler_shixiseng listCrawler = new ListCrawler_shixiseng();
@@ -106,7 +108,7 @@ public class RecruitController extends BaseController {
 			recruitDao.insert(recruits.get(i));
 		}
 		return ResponseData.newSuccess("添加成功");
-	}
+	}*/
 	
 	/**
 	 * 梧桐果
@@ -133,6 +135,38 @@ public class RecruitController extends BaseController {
 	@ResponseBody
 	public Object addRecruitWithJZM() throws Exception {
 		ListCrawler_jianzhimao listCrawler = new ListCrawler_jianzhimao();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
+	
+	/**
+	 * 大街网
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithDJ")
+	@ResponseBody
+	public Object addRecruitWithDJ() throws Exception {
+		ListCrawler_dajie listCrawler = new ListCrawler_dajie();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
+	
+	/**
+	 * 实习
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithSHIXI")
+	@ResponseBody
+	public Object addRecruitWithSHIXI() throws Exception {
+		ListCrawler_shixi listCrawler = new ListCrawler_shixi();
 		List<Recruit> recruits = listCrawler.parse();
 		for (int i = 0; i < recruits.size(); i++) {
 			recruitDao.insert(recruits.get(i));
