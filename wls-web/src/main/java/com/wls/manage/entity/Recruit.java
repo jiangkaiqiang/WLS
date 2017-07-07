@@ -202,4 +202,20 @@ public class Recruit {
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Recruit [id=" + id + ", title=" + title + ", cover=" + cover
+				+ ", company=" + company + ", industry=" + industry
+				+ ", category=" + category + ", province=" + province
+				+ ", internship_days=" + internship_days + ", salary=" + salary
+				+ ", publishTime=" + publishTime + ", content=" + content
+				+ ", position=" + position + ", address=" + address
+				+ ", endTime=" + endTime + ", education=" + education
+				+ ", internship_length=" + internship_length + ", source="
+				+ source + ", recruit_num=" + recruit_num + ", advantage="
+				+ advantage + ", url=" + url + "]";
+	}
+    
+    
 }

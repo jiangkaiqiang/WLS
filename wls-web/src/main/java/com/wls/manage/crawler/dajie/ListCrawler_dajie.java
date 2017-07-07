@@ -21,7 +21,9 @@ public class ListCrawler_dajie {
          crawler.getUrlList("https://www.dajie.com/ajax/index/jobs?ajax=1&type=1&page=1&pageSize=10&_CSRFToken=");
          for(Recruit ni:crawler.an){
              new PageCrawJob_dajie().pageCraw(ni);
+             System.out.println(ni);
          }
+         
          return crawler.an;
 	}
     
