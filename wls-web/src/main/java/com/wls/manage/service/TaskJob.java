@@ -57,7 +57,7 @@ public class TaskJob {
         HttpService httpService = new HttpServiceImpl();
         httpService.sendGet(url+"/i/recruit/addRecruitWithSHIXI",20000);
     } 
-    @Scheduled(cron = "0 14 0 * * ?")  
+    @Scheduled(cron = "0 28 0 * * ?")  
     public void job11() {  
         HttpService httpService = new HttpServiceImpl();
         httpService.sendGet(url+"/i/recruit/addRecruitWithDJ",20000);

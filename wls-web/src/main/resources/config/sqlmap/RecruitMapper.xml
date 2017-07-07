@@ -276,7 +276,6 @@
 		    <if test="keyword != null">
 		        AND title like "%"#{keyword}"%"
 		    </if>
-		    AND cover is not null AND cover != ''
 		 </where>
          order by `publishTime` desc
     </select>

@@ -80,6 +80,7 @@ var _hmt = _hmt || [];
               <div class="sidebar-news clearfix" ng-repeat="newdto in AllNews">
               <div class="item">
                 <a ng-if="newdto.cover!=''&&newdto.cover!=undefined"><img style="max-width:100px" ng-src="{{newdto.cover}}" alt=""></a>
+                <a ng-if="newdto.cover==''||newdto.cover==undefined"><img style="max-width:100px" ng-src="../../assets/img/logo.png" alt=""></a>
                 <h3 style="margin:15px 0px 5px 150px"><a ng-click="goNewsInfo(newdto.id)">{{newdto.title}}</a></h3>
                 <div class="news-info" style="margin:15px 0px 5px 150px">
                 <div class="news-block-tags">
@@ -92,7 +93,7 @@ var _hmt = _hmt || [];
                 <div class="news-block-tags">
                    <a><i class="glyphicon glyphicon-usd"></i> {{newdto.salary}}·</a>
                    <a> <i class="glyphicon glyphicon-user"></i>  学历{{newdto.education}} </a>
-                   <em> <i class="glyphicon glyphicon-map-marker"></i> {{newdto.province}}</em>
+                   <em> <i class="glyphicon glyphicon-map-marker"></i> {{newdto.address}}</em>
                   </div>
                   </div>
               </div>
