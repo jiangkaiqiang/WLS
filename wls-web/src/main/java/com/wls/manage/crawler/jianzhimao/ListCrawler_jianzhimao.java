@@ -19,9 +19,10 @@ public class ListCrawler_jianzhimao {
     	 logger.info("Start Crawl Pages on 兼职猫");   
          ListCrawlJob_jianzhimao crawler =new ListCrawlJob_jianzhimao();
          crawler.getUrlList("http://shanghai.jianzhimao.com");
-//         for(Recruit ni:crawler.an){
-//             new PageCrawJob_jianzhimao().pageCraw(ni);
-//         }
+         for(Recruit ni:crawler.an){
+             new PageCrawJob_jianzhimao().pageCraw(ni);
+             System.out.println(ni);
+         }
          return crawler.an;
 	}
     

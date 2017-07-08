@@ -33,7 +33,14 @@ public class PageParseJob_wutongguo {
 
     private  void parseNews(Document doc,Recruit ni) {
     	Element contentElement  = doc.select("div [class=cpBrochureMain] div[class=brochureContent]").first();
+    	Element comElement = doc.select("span[class=cpTitle]").first();
+    	Element logo = doc.select("div[class=cpLogo] img[src]").first();
     	ni.setContent(contentElement.toString());
+    	ni.setCompany(comElement.text());
+    	if(logo.attr("src").contains("http")){
+    		ni.setCover(logo.attr("src"));
+    	}
+    	
     }
     
     

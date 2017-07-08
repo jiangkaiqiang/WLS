@@ -36,13 +36,13 @@ public class PageParseJob_jianzhimao {
     	Element contentElement  = doc.select("div [class=box] div[class=detail]").first();
     	ni.setContent(contentElement.toString());
     	
-    	Element com  = doc.select("div [class=job_header] p[class=info]").first();
+    	Element com  = doc.select("div[class=job_header] p[class=info]").first();
     	ni.setCompany(com.text());
     	
-    	Element price  = doc.select("div [class=job_base] span[class=job_price]").first();
+    	Element price  = doc.select("div[class=job_base] span[class=job_price]").first();
     	ni.setSalary(price.text());
     	
-    	Element position  = doc.select("div [class=job_base] span[class=job_type]").first();
+    	Element position  = doc.select("div[class=job_base] a[class=job_type]").first();
     	ni.setPosition(position.text());
     	
 //    	recruit_num
@@ -55,7 +55,6 @@ public class PageParseJob_jianzhimao {
 				ni.setAddress(jobList.get(i).text());
 			}
 		}
-    	System.out.println();
     	
     }
     

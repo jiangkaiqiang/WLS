@@ -2,6 +2,7 @@ package com.wls.manage.crawler.wutongguo;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -49,8 +50,8 @@ public class ListCrawlJob_wutongguo {
     		 String titleString=url.text();
     		 recruit.setTitle(titleString);
     		 
-    		 Element img=element.select("div[class=applyRowL] a[class=Title] img").first();
-    		 recruit.setCover(img.attr("src"));
+//    		 Element img=element.select("div[class=applyRowL] a[class=Title] img").first();
+//    		 recruit.setCover(img.attr("src"));
     		 
     		 Element addr=element.select("span[class=GovListOtherInfo]").first();
     		 recruit.setAddress(addr.text());
@@ -59,8 +60,8 @@ public class ListCrawlJob_wutongguo {
     		 recruit.setPosition(position.text());
     		 
     		 recruit.setSource("梧桐果");
-    		 recruit.setCategory("实习");
-    		 
+    		 recruit.setCategory("1");
+    		 recruit.setPublishTime(new Date());
     		 
 //    		 recruit.setTitle(urlString.text().replaceAll("[ \t\n]+", ""));
 //    		 
@@ -78,7 +79,7 @@ public class ListCrawlJob_wutongguo {
 //    		 recruit.setPosition(cutomFontZ.text().substring(cusString.length()).replaceAll("[ -]", ""));
 //    		 recruit.setSource("实习僧");
 //    		 recruit.setCategory("实习");
-//    		 an.add(recruit);
+    		 an.add(recruit);
     	 }
     	 
  	 

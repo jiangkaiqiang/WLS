@@ -2,6 +2,7 @@ package com.wls.manage.crawler.jianzhimao;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,10 +44,11 @@ public class ListCrawlJob_jianzhimao {
     	 for(Element element:elements){
     		 Recruit recruit = new Recruit();
     		 Element url = element.select(" a[href]").first();
-    		 recruit.setUrl("http://http://shanghai.jianzhimao.com"+url.attr("href"));
+    		 recruit.setUrl("http://shanghai.jianzhimao.com"+url.attr("href"));
     		 recruit.setTitle(url.attr("title"));
     		 Element position=element.select("div[class=left area] span").first();
     		 recruit.setAddress(position.attr("title"));
+    		 recruit.setPublishTime(new Date());
     		 an.add(recruit);
     	 }
     	 

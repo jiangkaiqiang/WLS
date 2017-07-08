@@ -21,6 +21,7 @@ public class ListCrawler_wutongguo {
          crawler.getUrlList("http://www.wutongguo.com/shixi/n1/");
          for(Recruit ni:crawler.an){
              new PageCrawJob_wutongguo().pageCraw(ni);
+             System.out.println(ni);
          }
          return crawler.an;
 	}
