@@ -6,7 +6,7 @@ import com.wls.manage.service.base.impl.HttpServiceImpl;
 @Component("taskJob")  
 public class TaskJob {  
 	//String url = "http://www.weilanshu.com";
-	String url = "http://localhost:8080";
+	String url = "http://localhost:8989";
     @Scheduled(cron = "0 30 4 * * ?")  
     public void job1() {  
         HttpService httpService = new HttpServiceImpl();
