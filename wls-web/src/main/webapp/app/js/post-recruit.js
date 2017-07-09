@@ -120,8 +120,12 @@ wlsWeb.controller('post-recruit',function($http, $location,$rootScope, Upload,$s
 						'publisher' : $rootScope.user.username,
 						'salary' : $scope.salary,
 						'position' : $scope.position,
+						
 						'education' : $scope.education,
 						'content' : $scope.content,
+						
+						'companyName' : $scope.companyName,
+						'companyAddress' : $scope.companyAddress,
 						'schoolid' : $scope.schoolid
 		            };
 		            for(var i = 0; i < $scope.totalPicFiles.length; i++){

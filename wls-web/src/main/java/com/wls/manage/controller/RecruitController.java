@@ -208,6 +208,8 @@ public class RecruitController extends BaseController {
 			@RequestParam(required = false) String education,
 			@RequestParam(required = false) String pubcategory,
 			@RequestParam(required = false) String publisher,
+			@RequestParam(required = false) String companyName,
+			@RequestParam(required = false) String companyAddress,
 			@RequestParam(required = false) Integer schoolid,
 			@RequestParam(required = false) String content, 
 			@RequestParam(required = false) MultipartFile picFile0,
@@ -234,6 +236,10 @@ public class RecruitController extends BaseController {
 		recruit.setEducation(education);
 		recruit.setCategory(pubcategory);
 		recruit.setContent(content);
+		recruit.setCompany(companyName);
+		recruit.setAddress(companyAddress);
+		recruit.setSource("蔚蓝树");
+		recruit.setPublishTime(new Date());
 		String picFile = "";
 		/*String appendixString = "";
 		String videoFile = "";*/

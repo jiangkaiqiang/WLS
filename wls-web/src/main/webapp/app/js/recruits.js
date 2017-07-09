@@ -75,6 +75,11 @@ wlsWeb.controller('recruits',function($http, $location,$rootScope, $state,$scope
 		  
 	};
 	
+	$scope.auditChanged = function(optAudit) {
+		$scope.optAudit = optAudit;
+		$scope.getNews();
+	};
+	
 	$scope.getNews();
 
 	$scope.auditChanged = function(optAudit) {
