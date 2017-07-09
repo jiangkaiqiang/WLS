@@ -49,6 +49,8 @@ public class ListCrawlJob_jianzhimao {
     		 Element position=element.select("div[class=left area] span").first();
     		 recruit.setAddress(position.attr("title"));
     		 recruit.setPublishTime(new Date());
+    		 recruit.setSource("兼职猫");
+    		 recruit.setCategory("3");
     		 an.add(recruit);
     	 }
     	 
