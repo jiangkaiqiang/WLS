@@ -24,6 +24,8 @@ import com.wls.manage.crawler.jianzhimao.ListCrawler_jianzhimao;
 import com.wls.manage.crawler.shixi.ListCrawler_shixi;
 import com.wls.manage.crawler.shixiseng.ListCrawler_shixiseng;
 import com.wls.manage.crawler.wutongguo.ListCrawler_wutongguo;
+import com.wls.manage.crawler.zheyibu.quanzhi.ListCrawler_zheyibu_quanzhi;
+import com.wls.manage.crawler.zheyibu.shixi.ListCrawler_zheyibu_shixi;
 import com.wls.manage.dao.RecruitMapper;
 import com.wls.manage.dto.BaseDto;
 import com.wls.manage.dto.CommentDto;
@@ -167,6 +169,38 @@ public class RecruitController extends BaseController {
 	@ResponseBody
 	public Object addRecruitWithSHIXI() throws Exception {
 		ListCrawler_shixi listCrawler = new ListCrawler_shixi();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
+	
+	/**
+	 * 这一步实习
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithZYBSX")
+	@ResponseBody
+	public Object addRecruitWithZYBSX() throws Exception {
+		ListCrawler_zheyibu_shixi listCrawler = new ListCrawler_zheyibu_shixi();
+		List<Recruit> recruits = listCrawler.parse();
+		for (int i = 0; i < recruits.size(); i++) {
+			recruitDao.insert(recruits.get(i));
+		}
+		return ResponseData.newSuccess("添加成功");
+	}
+	
+	/**
+	 * 这一步全职
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/addRecruitWithZYBQZ")
+	@ResponseBody
+	public Object addRecruitWithZYBQZ() throws Exception {
+		ListCrawler_zheyibu_quanzhi listCrawler = new ListCrawler_zheyibu_quanzhi();
 		List<Recruit> recruits = listCrawler.parse();
 		for (int i = 0; i < recruits.size(); i++) {
 			recruitDao.insert(recruits.get(i));

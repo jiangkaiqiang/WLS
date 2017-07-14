@@ -62,6 +62,16 @@ public class TaskJob {
         HttpService httpService = new HttpServiceImpl();
         httpService.sendGet(url+"/i/recruit/addRecruitWithDJ",20000);
     } 
+    @Scheduled(cron = "0 3 5 * * ?")  
+    public void job12() {  
+        HttpService httpService = new HttpServiceImpl();
+        httpService.sendGet(url+"/i/recruit/addRecruitWithZYBSX",20000);
+    } 
+    @Scheduled(cron = "0 6 5 * * ?")  
+    public void job13() {  
+        HttpService httpService = new HttpServiceImpl();
+        httpService.sendGet(url+"/i/recruit/addRecruitWithZYBQZ",20000);
+    } 
    /* @Scheduled(cron = "0 51 4 * * ?")  
     public void job8() {  
         HttpService httpService = new HttpServiceImpl();
